@@ -75,16 +75,12 @@ const EditProfile = ({ match }) => {
       password: values.password || undefined,
     };
 
-    console.log("KONJ! edit");
-
     update({ userId: match.params.userId }, { t: jwt.token }, user).then(
       (data) => {
         if (data && data.error) {
           setValues({ ...values, error: data.error });
-          console.log("KONJ! eror");
         } else {
           setValues({ ...values, userId: data._id, redirectToProfile: true });
-          console.log("KONJ! response");
         }
       }
     );
@@ -122,6 +118,7 @@ const EditProfile = ({ match }) => {
         <br />
         <TextField
           id="password"
+          type="password"
           label="Password"
           className={classes.textField}
           value={values.password}
