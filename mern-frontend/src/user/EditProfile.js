@@ -75,13 +75,16 @@ const EditProfile = ({ match }) => {
       password: values.password || undefined,
     };
 
-    update({ userId: match.params.userId }, { t: jwt.token }, user)
-    .then(
+    console.log("KONJ! edit");
+
+    update({ userId: match.params.userId }, { t: jwt.token }, user).then(
       (data) => {
         if (data && data.error) {
           setValues({ ...values, error: data.error });
+          console.log("KONJ! eror");
         } else {
           setValues({ ...values, userId: data._id, redirectToProfile: true });
+          console.log("KONJ! response");
         }
       }
     );
@@ -92,7 +95,7 @@ const EditProfile = ({ match }) => {
   };
 
   if (values.redirectToProfile) {
-    return <Redirect to={"/user/" + values.userId} />;
+    return <Redirect to={"/user/" + match.params.userId} />;
   }
 
   return (

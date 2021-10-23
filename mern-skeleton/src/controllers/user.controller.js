@@ -46,11 +46,11 @@ const update = (req, res, next) => {
   user.updated = Date.now();
   user.save((err) => {
     if (err) {
-      return res.status(400).json({ error: errorHandler.getErrorMessage(err) });
+      return res.status(400).json({ error: errorHandler.getErrorMessage() });
     }
     user.hashed_password = undefined;
     user.salt = undefined;
-    res.json(user);
+    res.status(200).json(user);
   });
 };
 
