@@ -25,7 +25,7 @@ const signin = (req, res) => {
 };
 
 const signout = (req, res) => {
-  res.clearCokkie("t");
+  res.clearCookie("t");
 
   return res.status(200).json({ message: "signed out" });
 };
